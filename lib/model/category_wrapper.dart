@@ -2,6 +2,10 @@
 import 'category.dart';
 
 class CategoryWrapper {
-  List<Category> parentCategories;
+  Category parentCategory;
   List<Category> childCategories;
+
+  CategoryWrapper(){
+    childCategories = new List();
+  }
 }

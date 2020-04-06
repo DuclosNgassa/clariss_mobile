@@ -6,60 +6,34 @@ import 'package:flutter/cupertino.dart';
 class CategoryManager {
   BuildContext context;
   CategoryService _categorieService = new CategoryService();
-  List<Category> _childCatgories = new List();
-  List<Category> _parentCategories = new List();
   List<Category> _categoryList = new List();
-  CategoryWrapper _categoryWrapper = new CategoryWrapper();
+  List<CategoryWrapper> _categoryWrapperList = new List();
 
-  CategoryManager(this.context);
+  CategoryManager(this.context); // context required to translate categories later
 
-  Stream<CategoryWrapper> get categoryWrapper async* {
+  Stream<List<CategoryWrapper>> get categoryWrapperList async* {
     _categoryList = await _categorieService.fetchMockCategories();
 
-    _categoryWrapper = buildParentCategoriesMock(_categoryList);
+    _categoryWrapperList = buildParentCategoriesMock(_categoryList);
 
-    yield _categoryWrapper;
+    yield _categoryWrapperList;
   }
 
-  CategoryWrapper buildParentCategoriesMock(List<Category> categories) {
-    if (_parentCategories == null || _parentCategories.isEmpty) {
-      for (var _categorie in categories) {
-        if (_categorie.parentid == null) {
-          _parentCategories.add(_categorie);
-        } else {
-          _childCatgories.add(_categorie);
+  List<CategoryWrapper> buildParentCategoriesMock(List<Category> categories) {
+      for (var _parentCategorie in categories) {
+        if (_parentCategorie.parentid == null) {
+          CategoryWrapper _categoryWrapper = new CategoryWrapper();
+          _categoryWrapper.parentCategory = _parentCategorie;
+          for (Category childCategory in categories) {
+            if (childCategory.parentid == _parentCategorie.id) {
+              _categoryWrapper.childCategories.add(childCategory);
+            }
+          }
+          _categoryWrapperList.add(_categoryWrapper);
         }
       }
-      _parentCategories.sort((a, b) => a.id.compareTo(b.id));
-    }
-
-    CategoryWrapper categoryWrapper = new CategoryWrapper();
-
-    categoryWrapper.parentCategories = _parentCategories;
-    categoryWrapper.childCategories = _childCatgories;
-
-    return categoryWrapper;
-  }
-
-  CategoryWrapper buildParentCategories(List<Category> categories) {
-    if (_parentCategories == null || _parentCategories.isEmpty) {
-      List<Category> translatedcategories =
-          _categorieService.translateCategories(categories, context);
-      for (var _categorie in translatedcategories) {
-        if (_categorie.parentid == null) {
-          _parentCategories.add(_categorie);
-        } else {
-          _childCatgories.add(_categorie);
-        }
-      }
-      _parentCategories.sort((a, b) => a.title.compareTo(b.title));
-    }
-
-    CategoryWrapper categoryWrapper = new CategoryWrapper();
-
-    categoryWrapper.parentCategories = _parentCategories;
-    categoryWrapper.childCategories = _childCatgories;
-
-    return categoryWrapper;
+      _categoryWrapperList
+          .sort((a, b) => a.parentCategory.id.compareTo(b.parentCategory.id));
+    return _categoryWrapperList;
   }
 }

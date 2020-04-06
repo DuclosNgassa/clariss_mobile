@@ -19,43 +19,73 @@ class CategoryService {
   Future<List<Category>> fetchMockCategories() async {
     List<Category> _categoriesMock = new List();
 
-    Category categoryHair = new Category();
-    categoryHair.title = "Hair";
-    categoryHair.id = 1;
-    categoryHair.imageUrl = "assets/images/hair.jpg";
+    Category categoryCoiffure = new Category();
+    categoryCoiffure.title = "Coiffure";
+    categoryCoiffure.id = 1;
+    categoryCoiffure.imageUrl = "assets/images/hair.jpg";
 
-    Category categoryNails = new Category();
-    categoryNails.title = "Nails";
-    categoryNails.id = 2;
-    categoryNails.imageUrl = "assets/images/nails.jpg";
+    Category categoryCoiffureHomme = new Category();
+    categoryCoiffureHomme.title = "Coiffure Homme";
+    categoryCoiffureHomme.id = 11;
+    categoryCoiffureHomme.parentid = 1;
 
-    Category categoryHair1 = new Category();
-    categoryHair1.title = "Hair1";
-    categoryHair1.id = 3;
-    categoryHair1.imageUrl = "assets/images/hair.jpg";
+    Category categoryCoiffureFemme = new Category();
+    categoryCoiffureFemme.title = "Coiffure Femme";
+    categoryCoiffureFemme.id = 12;
+    categoryCoiffureFemme.parentid = 1;
 
-    Category categoryNails1 = new Category();
-    categoryNails1.title = "Nails1";
-    categoryNails1.id = 4;
-    categoryNails1.imageUrl = "assets/images/nails.jpg";
+    Category categoryCoiffureTeintureHomme = new Category();
+    categoryCoiffureTeintureHomme.title = "Teinture Homme";
+    categoryCoiffureTeintureHomme.id = 13;
+    categoryCoiffureTeintureHomme.parentid = 1;
 
-    Category categoryHair2 = new Category();
-    categoryHair2.title = "Hair2";
-    categoryHair2.id = 5;
-    categoryHair2.imageUrl = "assets/images/hair.jpg";
+    Category categoryCoiffureTeintureFemme = new Category();
+    categoryCoiffureTeintureFemme.title = "Teinture femme";
+    categoryCoiffureTeintureFemme.id = 14;
+    categoryCoiffureTeintureFemme.parentid = 1;
 
-    Category categoryNails2 = new Category();
-    categoryNails2.title = "Nails2";
-    categoryNails2.id = 6;
-    categoryNails2.imageUrl = "assets/images/nails.jpg";
+    Category categoryCoiffureToutSoins = new Category();
+    categoryCoiffureToutSoins.title = "Tous les soins";
+    categoryCoiffureToutSoins.id = 15;
+    categoryCoiffureToutSoins.parentid = 1;
+
+    Category categoryManicure = new Category();
+    categoryManicure.title = "Manicure / Pedicure";
+    categoryManicure.id = 2;
+    categoryManicure.imageUrl = "assets/images/nails.jpg";
+
+    Category categoryCosmetque = new Category();
+    categoryCosmetque.title = "Cosmetique";
+    categoryCosmetque.id = 3;
+    categoryCosmetque.imageUrl = "assets/images/cosmetique.jpg";
+
+    Category categoryMassage = new Category();
+    categoryMassage.title = "Massage";
+    categoryMassage.id = 4;
+    categoryMassage.imageUrl = "assets/images/massage.jpg";
+
+    Category categoryWellness = new Category();
+    categoryWellness.title = "Bien-être";
+    categoryWellness.id = 5;
+    categoryWellness.imageUrl = "assets/images/wellness.jpg";
+
+    Category categoryFitness = new Category();
+    categoryFitness.title = "Fitness";
+    categoryFitness.id = 6;
+    categoryFitness.imageUrl = "assets/images/fitness.jpg";
 
     _categoriesMock
-    ..add(categoryHair)
-    ..add(categoryNails)
-    ..add(categoryHair1)
-    ..add(categoryNails1)
-    ..add(categoryHair2)
-    ..add(categoryNails2);
+      ..add(categoryCoiffure)
+      ..add(categoryCoiffureFemme)
+      ..add(categoryCoiffureHomme)
+      ..add(categoryCoiffureTeintureHomme)
+      ..add(categoryCoiffureTeintureFemme)
+      ..add(categoryCoiffureToutSoins)
+      ..add(categoryManicure)
+      ..add(categoryCosmetque)
+      ..add(categoryMassage)
+      ..add(categoryWellness)
+      ..add(categoryFitness);
 
     return _categoriesMock;
   }

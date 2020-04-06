@@ -116,11 +116,11 @@ class _HomePageState extends State<HomePage> {
       onRefresh: () async {
         await _invalidatePostCache();
       },
-      child: StreamBuilder<CategoryWrapper>(
-        stream: _categoryManager.categoryWrapper,
+      child: StreamBuilder<List<CategoryWrapper>>(
+        stream: _categoryManager.categoryWrapperList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.parentCategories.length > 0) {
+            if (snapshot.data.length > 0) {
               return Container(
                 padding: EdgeInsets.only(
                   top: SizeConfig.blockSizeVertical * 2,
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                   right: SizeConfig.blockSizeHorizontal * 2,
                 ),
                 child: CategoryCardComponentPage(
-                  categoryList: snapshot.data.parentCategories,
+                  categoryList: snapshot.data,
                 ),
               );
             } else {

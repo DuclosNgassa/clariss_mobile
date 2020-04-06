@@ -1,3 +1,8 @@
+import 'package:clariss/custom_component/custom_button.dart';
+import 'package:clariss/global/global_color.dart';
+import 'package:clariss/global/global_styling.dart';
+import 'package:clariss/localization/app_localizations.dart';
+import 'package:clariss/page/contact/contact_page.dart';
 import 'package:clariss/util/size_config.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +15,6 @@ class FaqPage extends StatefulWidget {
 class _FaqPageState extends State<FaqPage> with TickerProviderStateMixin {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-/*
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -163,93 +167,6 @@ class _FaqPageState extends State<FaqPage> with TickerProviderStateMixin {
           return ContactPage();
         },
       ),
-    );
-  }
-*/
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Expandable Demo"),
-      ),
-      body: ExpandableTheme(
-        data:
-            const ExpandableThemeData(iconColor: Colors.blue, useInkWell: true),
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: <Widget>[
-            Card3(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Card3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return ExpandableNotifier(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ScrollOnExpand(
-          child: Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: <Widget>[
-                ExpandablePanel(
-                  theme: const ExpandableThemeData(
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                    tapBodyToExpand: true,
-                    tapBodyToCollapse: true,
-                    hasIcon: false,
-                  ),
-                  header: Container(
-                    color: Colors.indigoAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: SizeConfig.screenWidth,
-                              height: SizeConfig.screenHeight * 0.25,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage("assets/images/hair.jpg"),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  expanded: buildList(),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  buildItem(String label) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Text(label),
-    );
-  }
-
-  buildList() {
-    return Column(
-      children: <Widget>[
-        for (var i in [1, 2, 3, 4]) buildItem("Item ${i}"),
-      ],
     );
   }
 

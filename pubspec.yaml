@@ -61,6 +61,10 @@ flutter:
     - assets/images/background.png
     - assets/images/hair.jpg
     - assets/images/nails.jpg
+    - assets/images/cosmetique.jpg
+    - assets/images/massage.jpg
+    - assets/images/wellness.jpg
+    - assets/images/fitness.jpg
     - assets/lang/en.json
     - assets/lang/fr.json
     - assets/gif/loading-world.gif
